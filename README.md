@@ -24,12 +24,16 @@ Response :
 
 ```json
 {
-  "id": "string, unique",
-  "name": "string",
-  "price": "long",
-  "quantity": "integer",
-  "createdAt": "date",
-  "updatedAt": "date"
+  "code": "number",
+  "status": "string",
+  "data": {
+      "id": "string, unique",
+      "name": "string",
+      "price": "long",
+      "quantity": "integer",
+      "createdAt": "date",
+      "updatedAt": "date"
+  }
 }
 ```
 
@@ -45,12 +49,16 @@ Response :
 
 ```json
 {
-  "id": "string, unique",
-  "name": "string",
-  "price": "long",
-  "quantity": "integer",
-  "createdAt": "date",
-  "updatedAt": "date"
+  "code": "number",
+  "status": "string",
+  "data": {
+      "id": "string, unique",
+      "name": "string",
+      "price": "long",
+      "quantity": "integer",
+      "createdAt": "date",
+      "updatedAt": "date"
+  }
 }
 ```
 
@@ -77,12 +85,16 @@ Response :
 
 ```json
 {
-  "id": "string, unique",
-  "name": "string",
-  "price": "long",
-  "quantity": "integer",
-  "createdAt": "date",
-  "updatedAt": "date"
+  "code": "number",
+  "status": "string",
+  "data": {
+      "id": "string, unique",
+      "name": "string",
+      "price": "long",
+      "quantity": "integer",
+      "createdAt": "date",
+      "updatedAt": "date"
+  }
 }
 ```
 
@@ -97,5 +109,8 @@ Request :
 Response :
 
 ```json
-
+{
+  "code": "number",
+  "status": "string"
+}
 ```
