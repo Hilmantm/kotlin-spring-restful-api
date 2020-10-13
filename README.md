@@ -37,7 +37,7 @@ Response :
 }
 ```
 
-## Get Siswa
+## Get Product
 
 Request :
 - Method : `GET`
@@ -62,7 +62,45 @@ Response :
 }
 ```
 
-## Update Siswa
+## List Products
+
+Request :
+- Method : `GET`
+- Endpoint : `/api/products`
+- Header :
+    - Accept: `application/json`
+- Parameter :
+    - size: `number`
+    - page: `number`
+
+Response :
+
+```json
+{
+  "code": "number",
+  "status": "string",
+  "data": [
+      {
+          "id": "string, unique",
+          "name": "string",
+          "price": "long",
+          "quantity": "integer",
+          "createdAt": "date",
+          "updatedAt": "date"
+      }, 
+      {
+           "id": "string, unique",
+           "name": "string",
+           "price": "long",
+           "quantity": "integer",
+           "createdAt": "date",
+           "updatedAt": "date"
+       }
+  ]
+}
+```
+
+## Update Product
 
 Request :
 - Method : `PUT`
@@ -98,7 +136,7 @@ Response :
 }
 ```
 
-## Delete Siswa
+## Delete Product
 
 Request :
 - Method : `PUT`
