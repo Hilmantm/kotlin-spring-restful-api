@@ -1,4 +1,13 @@
 package kodesumsi.kotlin.restful.model
 
-class CreateProductRequest {
-}
+data class CreateProductRequest(
+
+        val id: String,
+
+        val name: String,
+
+        val price: Long,
+
+        val quantity: Int
+
+)

@@ -1,4 +1,19 @@
 package kodesumsi.kotlin.restful.model
 
-class ProductResponse {
-}
+import java.util.*
+
+data class ProductResponse(
+
+        val id: String,
+
+        val name: String,
+
+        val price: Long,
+
+        val quantity: Int,
+
+        val createdAt: Date,
+
+        val updatedAt: Date?
+
+)
