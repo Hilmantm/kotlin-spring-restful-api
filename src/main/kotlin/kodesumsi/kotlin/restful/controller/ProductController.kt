@@ -22,7 +22,6 @@ class ProductController(
             @RequestBody createProductRequest: CreateProductRequest
     ): WebResponse<ProductResponse> {
         val productResponse = productService.create(createProductRequest)
-
         return WebResponse(
                 code = 200,
                 status = "OK",
@@ -37,7 +36,6 @@ class ProductController(
             @PathVariable("idProduct") id: String
     ): WebResponse<ProductResponse> {
         val productResponse = productService.get(id)
-
         return WebResponse(
                 code = 200,
                 status = "OK",
@@ -55,11 +53,24 @@ class ProductController(
         @RequestBody updateProductRequest: UpdateProductRequest
     ): WebResponse<ProductResponse> {
         val productResponse = productService.update(id, updateProductRequest)
-
         return WebResponse(
                 code = 200,
                 status = "OK",
                 data = productResponse
+        )
+    }
+
+    @DeleteMapping(
+            value = ["/api/products/{idProduct}"]
+    )
+    fun deleteProduct(
+            @PathVariable("idProduct") id: String
+    ): WebResponse<String> {
+        productService.delete(id)
+        return WebResponse(
+                code = 200,
+                status = "DELETED",
+                data = id
         )
     }
 
