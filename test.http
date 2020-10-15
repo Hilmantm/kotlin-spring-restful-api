@@ -33,3 +33,39 @@ Accept: application/json
 
 GET http://localhost:8080/api/products/A8819283
 Accept: application/json
+
+### Update Product Valid
+
+PUT http://localhost:8080/api/products/B00291
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Acer Swift 7",
+  "price": 20000000,
+  "quantity": 9
+}
+
+### Update Product Invalid
+
+PUT http://localhost:8080/api/products/B00291
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Acer Swift 7",
+  "price": -200000,
+  "quantity": -1
+}
+
+### Update Product Not Found
+
+PUT http://localhost:8080/api/products/A8819283
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Acer Swift 7",
+  "price": 20000000,
+  "quantity": 9
+}

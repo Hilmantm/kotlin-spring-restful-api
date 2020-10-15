@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 class ProductController(
-        val productService: ProductService,
-        val validationUtil: ValidationUtil
+        val productService: ProductService
 ) {
 
     @PostMapping(
@@ -22,8 +21,6 @@ class ProductController(
     fun createProduct(
             @RequestBody createProductRequest: CreateProductRequest
     ): WebResponse<ProductResponse> {
-        validationUtil.validate(createProductRequest)
-
         val productResponse = productService.create(createProductRequest)
 
         return WebResponse(
@@ -49,7 +46,7 @@ class ProductController(
     }
 
     @PutMapping(
-            value = ["/api/products/{idProduct]"],
+            value = ["/api/products/{idProduct}"],
             produces = ["application/json"],
             consumes = ["application/json"]
     )
@@ -57,8 +54,6 @@ class ProductController(
         @PathVariable("idProduct") id: String,
         @RequestBody updateProductRequest: UpdateProductRequest
     ): WebResponse<ProductResponse> {
-        validationUtil.validate(updateProductRequest)
-
         val productResponse = productService.update(id, updateProductRequest)
 
         return WebResponse(

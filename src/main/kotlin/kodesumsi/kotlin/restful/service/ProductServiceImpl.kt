@@ -6,16 +6,20 @@ import kodesumsi.kotlin.restful.model.CreateProductRequest
 import kodesumsi.kotlin.restful.model.ProductResponse
 import kodesumsi.kotlin.restful.model.UpdateProductRequest
 import kodesumsi.kotlin.restful.repository.ProductRepository
+import kodesumsi.kotlin.restful.validation.ValidationUtil
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class ProductServiceImpl(
-        val productRepository: ProductRepository
+        val productRepository: ProductRepository,
+        val validationUtil: ValidationUtil
 ): ProductService {
 
     override fun create(createProductRequest: CreateProductRequest): ProductResponse {
+        validationUtil.validate(createProductRequest)
+
         val product = Product(
                 id = createProductRequest.id!!,
                 name = createProductRequest.name!!,
@@ -41,6 +45,8 @@ class ProductServiceImpl(
 
     override fun update(id: String, updateProductRequest: UpdateProductRequest): ProductResponse {
         val product = productRepository.findByIdOrNull(id) ?: throw NotFoundException()
+
+        validationUtil.validate(updateProductRequest)
 
         product.apply {
             name = updateProductRequest.name!!
