@@ -4,6 +4,7 @@ import kodesumsi.kotlin.restful.entity.Product
 import kodesumsi.kotlin.restful.error.NotFoundException
 import kodesumsi.kotlin.restful.model.CreateProductRequest
 import kodesumsi.kotlin.restful.model.ProductResponse
+import kodesumsi.kotlin.restful.model.UpdateProductRequest
 import kodesumsi.kotlin.restful.repository.ProductRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -36,6 +37,21 @@ class ProductServiceImpl(
         } else {
             return convertProductToProductResponse(product)
         }
+    }
+
+    override fun update(id: String, updateProductRequest: UpdateProductRequest): ProductResponse {
+        val product = productRepository.findByIdOrNull(id) ?: throw NotFoundException()
+
+        product.apply {
+            name = updateProductRequest.name!!
+            price = updateProductRequest.price!!
+            quantity = updateProductRequest.quantity!!
+            updatedAt = Date()
+        }
+
+        productRepository.save(product)
+
+        return convertProductToProductResponse(product)
     }
 
     private fun convertProductToProductResponse(product: Product): ProductResponse {
