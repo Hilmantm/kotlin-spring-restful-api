@@ -33,8 +33,7 @@ class ProductController(
     }
 
     @GetMapping(
-            value = ["/api/products/{idProduct}"],
-            consumes = ["application/json"]
+            value = ["/api/products/{idProduct}"]
     )
     fun getProduct(
             @PathVariable("idProduct") id: String

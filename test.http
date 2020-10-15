@@ -1,3 +1,5 @@
+## Create Product Valid
+
 POST http://localhost:8080/api/products
 Content-Type: application/json
 Accept: application/json
@@ -9,7 +11,7 @@ Accept: application/json
   "quantity": 10
 }
 
-###
+### Create Product Invalid
 
 POST http://localhost:8080/api/products
 Content-Type: application/json
@@ -21,3 +23,13 @@ Accept: application/json
   "price": -1000,
   "quantity": -1
 }
+
+### Get Product Valid
+
+GET http://localhost:8080/api/products/B00291
+Accept: application/json
+
+### Get Product Invalid
+
+GET http://localhost:8080/api/products/A8819283
+Accept: application/json
