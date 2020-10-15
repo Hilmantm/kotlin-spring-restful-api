@@ -5,9 +5,7 @@ import kodesumsi.kotlin.restful.model.ProductResponse
 import kodesumsi.kotlin.restful.model.WebResponse
 import kodesumsi.kotlin.restful.service.ProductService
 import kodesumsi.kotlin.restful.validation.ValidationUtil
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class ProductController(
@@ -17,8 +15,8 @@ class ProductController(
 
     @PostMapping(
             value = ["/api/products"],
-            produces = ["aplication/json"],
-            consumes = ["aplication/json"]
+            produces = ["application/json"],
+            consumes = ["application/json"]
     )
     fun createProduct(
             @RequestBody createProductRequest: CreateProductRequest
@@ -26,6 +24,22 @@ class ProductController(
         validationUtil.validate(createProductRequest)
 
         val productResponse = productService.create(createProductRequest)
+
+        return WebResponse(
+                code = 200,
+                status = "OK",
+                data = productResponse
+        )
+    }
+
+    @GetMapping(
+            value = ["/api/products/{idProduct}"],
+            consumes = ["application/json"]
+    )
+    fun getProduct(
+            @PathVariable("idProduct") id: String
+    ): WebResponse<ProductResponse> {
+        val productResponse = productService.get(id)
 
         return WebResponse(
                 code = 200,

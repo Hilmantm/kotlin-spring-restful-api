@@ -1,0 +1,23 @@
+POST http://localhost:8080/api/products
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "B00291",
+  "name": "Acer Swift 3",
+  "price": 12000000,
+  "quantity": 10
+}
+
+###
+
+POST http://localhost:8080/api/products
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "B00291",
+  "name": "",
+  "price": -1000,
+  "quantity": -1
+}
