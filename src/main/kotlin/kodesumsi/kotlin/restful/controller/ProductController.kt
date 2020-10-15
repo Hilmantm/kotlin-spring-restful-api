@@ -4,13 +4,15 @@ import kodesumsi.kotlin.restful.model.CreateProductRequest
 import kodesumsi.kotlin.restful.model.ProductResponse
 import kodesumsi.kotlin.restful.model.WebResponse
 import kodesumsi.kotlin.restful.service.ProductService
+import kodesumsi.kotlin.restful.validation.ValidationUtil
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class ProductController(
-        val productService: ProductService
+        val productService: ProductService,
+        val validationUtil: ValidationUtil
 ) {
 
     @PostMapping(
@@ -21,6 +23,8 @@ class ProductController(
     fun createProduct(
             @RequestBody createProductRequest: CreateProductRequest
     ): WebResponse<ProductResponse> {
+        validationUtil.validate(createProductRequest)
+
         val productResponse = productService.create(createProductRequest)
 
         return WebResponse(
