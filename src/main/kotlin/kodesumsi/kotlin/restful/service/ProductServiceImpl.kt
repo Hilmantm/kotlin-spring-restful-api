@@ -3,13 +3,16 @@ package kodesumsi.kotlin.restful.service
 import kodesumsi.kotlin.restful.entity.Product
 import kodesumsi.kotlin.restful.error.NotFoundException
 import kodesumsi.kotlin.restful.model.CreateProductRequest
+import kodesumsi.kotlin.restful.model.ListProductRequest
 import kodesumsi.kotlin.restful.model.ProductResponse
 import kodesumsi.kotlin.restful.model.UpdateProductRequest
 import kodesumsi.kotlin.restful.repository.ProductRepository
 import kodesumsi.kotlin.restful.validation.ValidationUtil
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
+import java.util.stream.Collectors
 
 @Service
 class ProductServiceImpl(
@@ -60,6 +63,13 @@ class ProductServiceImpl(
     override fun delete(id: String) {
         val product = findProductByIdOrThrowNotFound(id)
         productRepository.delete(product)
+    }
+
+    override fun list(listProductRequest: ListProductRequest): List<ProductResponse> {
+        val page = productRepository.findAll(PageRequest.of(listProductRequest.page, listProductRequest.size))
+        val listProduct: List<Product> = page.get().collect(Collectors.toList())
+
+        return listProduct.map { convertProductToProductResponse(it) }
     }
 
     private fun findProductByIdOrThrowNotFound(id: String): Product {

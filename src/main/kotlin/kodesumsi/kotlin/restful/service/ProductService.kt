@@ -1,6 +1,7 @@
 package kodesumsi.kotlin.restful.service
 
 import kodesumsi.kotlin.restful.model.CreateProductRequest
+import kodesumsi.kotlin.restful.model.ListProductRequest
 import kodesumsi.kotlin.restful.model.ProductResponse
 import kodesumsi.kotlin.restful.model.UpdateProductRequest
 
@@ -13,5 +14,7 @@ interface ProductService {
     fun update(id: String, updateProductRequest: UpdateProductRequest): ProductResponse
 
     fun delete(id: String)
+
+    fun list(listProductRequest: ListProductRequest): List<ProductResponse>
 
 }
